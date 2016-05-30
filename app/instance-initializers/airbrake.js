@@ -21,7 +21,7 @@ function setupAirbrake(application) {
   if (config.airbrake.filters) {
     var folder = config.airbrake.filterFolder || 'util';
     config.airbrake.filters.forEach(function(filterName) {
-      var filter = application.container.lookupFactory(`${folder}:${filterName}`);
+      var filter = application.resolveRegistration(`${folder}:${filterName}`);
       if (filter) {
         airbrake.addFilter(filter(application));
       }
